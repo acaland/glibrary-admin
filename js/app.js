@@ -4,11 +4,11 @@ var app = angular.module("glibrary-admin", ['ngRoute'])
             $routeProvider
                 .when('/Repositories', {
                     templateUrl: 'repositories.html',
-                    controller: 'repositories'
+                    controller: 'repositoriesCtrl'
                 })
                 .when('/Collections', {
-                    templateUrl: 'collections.html'
-                    //controller: 'ChapterCtrl',
+                    templateUrl: 'collections.html',
+                    controller: 'collectionsCtrl',
                     //controllerAs: 'chapter'
                 })
                 .otherwise({redirectTo: '/Repositories'});

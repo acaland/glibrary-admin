@@ -3,12 +3,12 @@ var app = angular.module("glibrary-admin");
 
 
 
-app.controller('repositories', function($scope, $http, $log) {
+app.controller('repositoriesCtrl', function($scope, $http, $log) {
 
     function loadRepos() {
         $http.get("http://glibrary.ct.infn.it:3000/repositories")
             .then(function(data) {
-                $log.info(data);
+                $log.info(data.data.result);
                 $scope.repos = data.data.result;
             });
     }
