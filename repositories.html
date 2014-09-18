@@ -1,0 +1,37 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="repositories">
+    <h1 class="page-header">Repositories</h1>
+
+    <div class="table-responsive col-md-5">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="repo in repos" ng-class="{info : $index == 0}">
+                    <td>{{repo}}</td>
+
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-5 col-md-offset-1">
+        <h3>Add new Repository</h3>
+        <form>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" ng-model="repoName" class="form-control" placeholder="Enter the repository name without spaces"></input>
+            </div>
+            <button type="submit" class="btn btn-info" ng-click="create()">Create</button>
+        </form>
+        <div id="success-alert" class="alert alert-success" role="alert" ng-show="created">Repository
+            <strong>{{repoName}}</strong>successfully created</div>
+    </div>
+
+
+</div>
