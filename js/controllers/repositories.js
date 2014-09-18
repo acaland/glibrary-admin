@@ -10,10 +10,12 @@ app.controller('repositoriesCtrl', function($scope, $http, $log) {
             .then(function(data) {
                 $log.info(data.data.result);
                 $scope.repos = data.data.result;
+                
             });
     }
 
     loadRepos();
+    
 
     $scope.create = function() {
     	//$scope.created = true;

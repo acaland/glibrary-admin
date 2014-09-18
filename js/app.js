@@ -15,4 +15,14 @@ var app = angular.module("glibrary-admin", ['ngRoute'])
 
             
         }
-    ]);
+    ])
+    .controller("MainCtrl", function($scope, $location, $log) {
+    	$scope.isActive = function(route) {
+    		return route === $location.path();
+    	}
+    	$scope.currentRepo = "";
+    	$scope.selectRepo = function(repo) {
+    		$scope.currentRepo = repo;
+    		$log.info($scope.currentRepo);
+    	}
+    });
