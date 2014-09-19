@@ -67,7 +67,7 @@ app.controller('collectionsCtrl', function($scope, $http, $log) {
     }
     $scope.my_data = [];
     $scope.my_tree = tree = {};
-    //loadCollection();
+    loadCollection();
     $scope.$on("reloadCollection", loadCollection);
     
 });
