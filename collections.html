@@ -3,7 +3,11 @@
     <div id="success-alert" class="alert alert-warning" role="warn" ng-hide="collections">
         Please select a repository first
     </div>
-    <div class="table-responsive">
+    <div style="width:300px;background:whitesmoke;border:1px solid lightgray;border-radius:5px;" class="col-md-5">
+               
+                  <abn-tree tree-data="my_data"  expand-level="2" ></abn-tree>
+    </div>
+    <div class="table-responsive col-md-offset-4">
         <table class="table table-striped">
             <thead>
                 <tr>
