@@ -47,7 +47,7 @@ function prepareTree(rowData) {
 
 
 
-app.controller('collectionsCtrl', function($scope, $http, $log) {
+app.controller('collectionsCtrl', function($scope, $http, $log, $timeout) {
 
     function loadCollection() {
         if (!$scope.currentRepo) {
@@ -59,15 +59,35 @@ app.controller('collectionsCtrl', function($scope, $http, $log) {
                 $scope.collections = data.results;
                 $log.info($scope.collections);
                 $scope.my_data = prepareTree(data.results);
-                $log.info($scope.my_data);
-                $log.info("tree is");
-                $log.info(tree);
-                tree.expand_all();
+                $timeout(function() {
+                    $scope.my_tree.expand_all();
+                }, 0); 
+
+            });
+    }
+
+    function getCollectionSchema(name) {
+        $http.get("http://glibrary.ct.infn.it:3000/" + $scope.currentRepo + "/" + name)
+            .success(function(data) {
+                //$log.info(data);
+                var schema = {};
+                for (attr in data) {
+                    if (attr != "TypeName" && attr != "Path" && attr != "VisibleAttrs" && attr != "FilterAttrs"
+                            && attr != "ColumnWidth" && attr != "ParentID") {
+                        schema[attr] = data[attr];
+                    }
+                }
+                $scope.collectionSchema = schema;
+                $log.info(schema);
             });
     }
     $scope.my_data = [];
-    $scope.my_tree = tree = {};
+    $scope.my_tree = {};
     loadCollection();
     $scope.$on("reloadCollection", loadCollection);
-    
+    $scope.my_tree_handler = function(branch) {
+        $log.info(branch.data.Type);
+        getCollectionSchema(branch.data.Type);
+    }
+
 });

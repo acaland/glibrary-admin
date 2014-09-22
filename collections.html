@@ -3,31 +3,24 @@
     <div id="success-alert" class="alert alert-warning" role="warn" ng-hide="collections">
         Please select a repository first
     </div>
-    <div style="width:300px;background:whitesmoke;border:1px solid lightgray;border-radius:5px;" class="col-md-5">
-               
-                  <abn-tree tree-data="my_data"  expand-level="2" ></abn-tree>
-    </div>
-    <div class="table-responsive col-md-offset-4">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                    <th>Header</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1,001</td>
-                    <td>Lorem</td>
-                    <td>ipsum</td>
-                    <td>dolor</td>
-                    <td>sit</td>
-                </tr>
+    <div style="width:300px;background:whitesmoke;border:1px solid lightgray;border-radius:5px;" class="col-md-3">
 
-            </tbody>
-        </table>
+        <abn-tree tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch)"></abn-tree>
+    </div>
+
+    <div class="table-responsive col-md-8">
+        <form class="form-horizontal">
+            <div class="form-group" ng-repeat="(attr, value) in collectionSchema">
+                <label for="inputEmail3" class="col-md-4 control-label">{{attr}}</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="{{value}}">
+                </div>
+            </div>
+            <div class="form-group" ng-show="collectionSchema">
+                <div class="col-md-offset-4">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </form>
         <div>
         </div>
